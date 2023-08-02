@@ -33,8 +33,3 @@
 
 This project was created by Aileen Olitoquit and idea was contributed by Marc Justine Olimverio for the Object-Oriented Programming (OOP) subject. It utilizes Java and the Swing library for GUI development.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE), allowing you to modify and distribute the code for personal and educational purposes. Refer to the license file for more details.
-
-Enjoy the riddle-solving challenge and have fun with "How Many Missed The Boat Riddle Java GUI"!

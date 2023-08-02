@@ -5,18 +5,16 @@
     Medina, Kathlene
 */
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 
-/**
- *
- * @author jionv
- */
 public class HowManyMissedTheBoat extends javax.swing.JFrame {
     Random random = new Random();
-    int answer;
+    private int answer = 0;
+    private boolean isFirstCalculation = true;
     
     //Array for the dice values
     int[] values = new int[6];
@@ -59,42 +57,42 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(161, 188, 215));
         jPanel1.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
 
-        lblBox1.setIcon(new javax.swing.ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\4.png")); // NOI18N
+        lblBox1.setIcon(new javax.swing.ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\1.png")); // NOI18N
         lblBox1.setText("jLabel1");
         lblBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblBox1.setMinimumSize(new java.awt.Dimension(122, 122));
         lblBox1.setPreferredSize(new java.awt.Dimension(122, 122));
         jPanel1.add(lblBox1);
 
-        lblBox2.setIcon(new javax.swing.ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); // NOI18N
+        lblBox2.setIcon(new javax.swing.ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\2.png")); // NOI18N
         lblBox2.setText("jLabel1");
         lblBox2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblBox2.setMinimumSize(new java.awt.Dimension(122, 122));
         lblBox2.setPreferredSize(new java.awt.Dimension(122, 122));
         jPanel1.add(lblBox2);
 
-        lblBox3.setIcon(new javax.swing.ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); // NOI18N
+        lblBox3.setIcon(new javax.swing.ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\3.png")); // NOI18N
         lblBox3.setText("jLabel1");
         lblBox3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblBox3.setMinimumSize(new java.awt.Dimension(122, 122));
         lblBox3.setPreferredSize(new java.awt.Dimension(122, 122));
         jPanel1.add(lblBox3);
 
-        lblBox4.setIcon(new javax.swing.ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); // NOI18N
+        lblBox4.setIcon(new javax.swing.ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\4.png")); // NOI18N
         lblBox4.setText("jLabel1");
         lblBox4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblBox4.setMinimumSize(new java.awt.Dimension(122, 122));
         lblBox4.setPreferredSize(new java.awt.Dimension(122, 122));
         jPanel1.add(lblBox4);
 
-        lblBox5.setIcon(new javax.swing.ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); // NOI18N
+        lblBox5.setIcon(new javax.swing.ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\5.png")); // NOI18N
         lblBox5.setText("jLabel1");
         lblBox5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblBox5.setMinimumSize(new java.awt.Dimension(122, 122));
         lblBox5.setPreferredSize(new java.awt.Dimension(122, 122));
         jPanel1.add(lblBox5);
 
-        lblBox6.setIcon(new javax.swing.ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\5.png")); // NOI18N
+        lblBox6.setIcon(new javax.swing.ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\6.png")); // NOI18N
         lblBox6.setText("jLabel1");
         lblBox6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblBox6.setMinimumSize(new java.awt.Dimension(122, 122));
@@ -213,62 +211,69 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
-        answer = 0;
-        try{ 
-            //Non Duplicate Dice
+        if (isFirstCalculation) {
+            isFirstCalculation = false; 
+        } else {
+            // non-Duplicate Dice
             int nonDupDice = 0;
-            
-            //Creating an empty ArrayList
+
+            // creating an empty ArrayList
             ArrayList<Integer> ans = new ArrayList<>();
-            for(int i : values){
-                //checking if the element is already present or not
-                if(!ans.contains(i)){
-                    //Adding the element to the ArrayList if not present
+            for (int i : values) {
+                // checking if the element is already present or not
+                if (!ans.contains(i)) {
+                    // adding the element to the ArrayList if not present
                     ans.add(i);
                 }
             }
-            //adding all the elements in the nonDupDice
-            for(int i : ans){
+
+            // adding all the elements in the nonDupDice
+            for (int i : ans) {
                 nonDupDice += i;
             }
-            
-            //nonDupDice subtracted from the total value
+
+            // non-Duplicate Dice subtracted from the total value
             answer = 21 - nonDupDice;
-            
-            //calls the method that checks the answer
-            checker();
-            
-        } catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(
-                    rootPane, 
-                    "Please enter a number only!", 
-                    "ERROR   ", 
-                    HEIGHT);
-        }  
+        }
+
+        // calls the method that checks the answer
+        checker();
     }//GEN-LAST:event_btnCheckActionPerformed
 
     private void btnRollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollActionPerformed
+        lblBox1.setBorder(new LineBorder(Color.black, 1));
+        lblBox2.setBorder(new LineBorder(Color.black, 1));
+        lblBox3.setBorder(new LineBorder(Color.black, 1));
+        lblBox4.setBorder(new LineBorder(Color.black, 1));
+        lblBox5.setBorder(new LineBorder(Color.black, 1));
+        lblBox6.setBorder(new LineBorder(Color.black, 1));
+        tfAnswer.setText("");
+        
+        Thread rollingThread = new Thread(() -> {
+            //executes rolling dice action
+            for (int j = 0; j < 20; j++) {
+        
         //loop for displaying random icon in the Jlabels
         for(int i = 0; i <=5; i++){
                 //assigns random value to the array index
-                values[i] = random.nextInt(6);
+                values[i] = random.nextInt(6)+1;
                 
                 switch(i){
                     case 0:
 
                         switch(values[0]){
                             case 1:
-                                lblBox1.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); break;
+                                lblBox1.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\1.png")); break;
                             case 2:
-                                lblBox1.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\2.png")); break;
+                                lblBox1.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\2.png")); break;
                             case 3:
-                                lblBox1.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); break;
+                                lblBox1.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\3.png")); break;
                             case 4:
-                                lblBox1.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\4.png")); break;
+                                lblBox1.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\4.png")); break;
                             case 5:
-                                lblBox1.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\5.png")); break;
+                                lblBox1.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\5.png")); break;
                             case 6:
-                                lblBox1.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\6.png")); break;
+                                lblBox1.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\6.png")); break;
                             default:
                                 break;  
                         } 
@@ -276,17 +281,17 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
                     case 1:
                         switch(values[1]){
                             case 1:
-                                lblBox2.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); break;
+                                lblBox2.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\1.png")); break;
                             case 2:
-                                lblBox2.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\2.png")); break;
+                                lblBox2.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\2.png")); break;
                             case 3:
-                                lblBox2.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); break;
+                                lblBox2.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\3.png")); break;
                             case 4:
-                                lblBox2.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\4.png")); break;
+                                lblBox2.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\4.png")); break;
                             case 5:
-                                lblBox2.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\5.png")); break;
+                                lblBox2.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\5.png")); break;
                             case 6:
-                                lblBox2.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\6.png")); break;
+                                lblBox2.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\6.png")); break;
                             default:
                                 break;
                         }
@@ -294,17 +299,17 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
                     case 2:
                         switch(values[2]){
                             case 1:
-                                lblBox3.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); break;
+                                lblBox3.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\1.png")); break;
                             case 2:
-                                lblBox3.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\2.png")); break;
+                                lblBox3.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\2.png")); break;
                             case 3:
-                                lblBox3.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); break;
+                                lblBox3.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\3.png")); break;
                             case 4:
-                                lblBox3.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\4.png")); break;
+                                lblBox3.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\4.png")); break;
                             case 5:
-                                lblBox3.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\5.png")); break;
+                                lblBox3.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\5.png")); break;
                             case 6:
-                                lblBox3.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\6.png")); break;
+                                lblBox3.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\6.png")); break;
                             default:
                                 break;
                         }
@@ -312,17 +317,17 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
                     case 3:
                         switch(values[3]){
                             case 1:
-                                lblBox4.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); break;
+                                lblBox4.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\1.png")); break;
                             case 2:
-                                lblBox4.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\2.png")); break;
+                                lblBox4.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\2.png")); break;
                             case 3:
-                                lblBox4.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); break;
+                                lblBox4.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\3.png")); break;
                             case 4:
-                                lblBox4.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\4.png")); break;
+                                lblBox4.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\4.png")); break;
                             case 5:
-                                lblBox4.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\5.png")); break;
+                                lblBox4.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\5.png")); break;
                             case 6:
-                                lblBox4.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\6.png")); break;
+                                lblBox4.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\6.png")); break;
                             default:
                                 break;
                         }
@@ -330,17 +335,17 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
                     case 4:
                         switch(values[4]){
                             case 1:
-                                lblBox5.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); break;
+                                lblBox5.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\1.png")); break;
                             case 2:
-                                lblBox5.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\2.png")); break;
+                                lblBox5.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\2.png")); break;
                             case 3:
-                                lblBox5.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); break;
+                                lblBox5.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\3.png")); break;
                             case 4:
-                                lblBox5.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\4.png")); break;
+                                lblBox5.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\4.png")); break;
                             case 5:
-                                lblBox5.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\5.png")); break;
+                                lblBox5.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\5.png")); break;
                             case 6:
-                                lblBox5.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\6.png")); break;
+                                lblBox5.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\6.png")); break;
                             default:
                                 break;
                         }
@@ -348,17 +353,17 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
                     case 5:
                         switch(values[5]){
                             case 1:
-                                lblBox6.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\1.png")); break;
+                                lblBox6.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\1.png")); break;
                             case 2:
-                                lblBox6.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\2.png")); break;
+                                lblBox6.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\2.png")); break;
                             case 3:
-                                lblBox6.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\3.png")); break;
+                                lblBox6.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\3.png")); break;
                             case 4:
-                                lblBox6.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\4.png")); break;
+                                lblBox6.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\4.png")); break;
                             case 5:
-                                lblBox6.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\5.png")); break;
+                                lblBox6.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\5.png")); break;
                             case 6:
-                                lblBox6.setIcon(new ImageIcon("E:\\AILEEN\\CVSUSC\\pics\\6.png")); break;
+                                lblBox6.setIcon(new ImageIcon("C:\\Users\\jionv\\OneDrive\\Documents\\aileen files\\CVSUSC\\pics\\6.png")); break;
                             default:
                                 break;
                         }
@@ -366,9 +371,20 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
                     default: 
                         break;
                 }
+                }
+                lblConfirmAnswer.setText("Rolling...");
+                try {
+                    Thread.sleep(50); // Add a short delay to create the rolling effect
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            lblConfirmAnswer.setText("");
+            
+        });
+        rollingThread.start();
+    }//GEN-LAST:event_btnRollActionPerformed]
         
-    }//GEN-LAST:event_btnRollActionPerformed
     
     public void checker(){
         //converts String input to Integer
@@ -377,18 +393,25 @@ public class HowManyMissedTheBoat extends javax.swing.JFrame {
         //checks whether the input answer is right or wrong
         if(answer == tfIntAnswer){
             lblConfirmAnswer.setText("Congratulations! You got the correct answer!");
+            lblBox1.setBorder(new LineBorder(Color.green, 1));
+            lblBox2.setBorder(new LineBorder(Color.green, 1));
+            lblBox3.setBorder(new LineBorder(Color.green, 1));
+            lblBox4.setBorder(new LineBorder(Color.green, 1));
+            lblBox5.setBorder(new LineBorder(Color.green, 1));
+            lblBox6.setBorder(new LineBorder(Color.green, 1));
         } else {
             lblConfirmAnswer.setText("Wrong! The correct answer is " + answer + "!");
+            lblBox1.setBorder(new LineBorder(Color.red, 1));
+            lblBox2.setBorder(new LineBorder(Color.red, 1));
+            lblBox3.setBorder(new LineBorder(Color.red, 1));
+            lblBox4.setBorder(new LineBorder(Color.red, 1));
+            lblBox5.setBorder(new LineBorder(Color.red, 1));
+            lblBox6.setBorder(new LineBorder(Color.red, 1));
         }
     }
    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

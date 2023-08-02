@@ -4,7 +4,7 @@
 ![Swing](https://img.shields.io/badge/Swing-GUI%20Library-orange)
 
 
-"How Many Missed The Boat Riddle Java GUI" is a Java Graphical User Interface (GUI) project developed as the final project for the Object-Oriented Programming (OOP) subject. The application presents a fun and interactive riddle game that challenges players to solve a boat-related puzzle.
+"How Many Missed The Boat" Riddle is a Java Graphical User Interface (GUI) project developed as the final project for the Object-Oriented Programming (OOP) subject. The application presents a fun and interactive riddle game that challenges players to solve a boat-related puzzle.
 
 ## How to Play
 
